@@ -1,14 +1,12 @@
 class Solution {
     public boolean containsDuplicate(int[] nums) {
-        HashSet<Integer> set = new HashSet<>();
+        HashMap<Integer,Integer> map = new HashMap<>();
         for(int i:nums){
-            if(set.contains(i)) return true;
-            set.add(i);
+            map.put(i,map.getOrDefault(i,0)+1);
+        }
+        for(int i:map.values()){
+            if(i > 1) return true;
         }
         return false;
     }
 }
-
-// --> We need to find whether a duplicate number exists i.e a number with freq > 1
-// can use nested loop -> n^2 time and O(1) - space
-// use hashmap - O(n) and (O)n  or hashset
